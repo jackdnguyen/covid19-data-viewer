@@ -1,0 +1,58 @@
+<!--Location (checkbox): Federal, Provincial, Regional -->
+<div>
+    <form 
+    [formGroup] = "form"
+    >
+    <!--(change) = onChange(form.value)-->
+        <h2>Location</h2>
+        <div id="location">
+            <input type = "checkbox" value = "Federal" formControlName="federal" (change)="dataChange()"><label>Federal</label>
+            <input type = "checkbox" value = "Provincial" formControlName="provincial" (change)="dataChange()"><label>Provincial</label>
+            <input type = "checkbox" value = "Regional" formControlName="regional" (change)="dataChange()"><label>Regional</label>
+        </div>
+        <br>
+<!--Stat (checkbox): New Cases, Cumulative Cases, New Deaths, Cumulative Deaths, New Recovered, Cumulative Recovered--> 
+        <h2>Stats</h2> 
+        <input type ="checkbox" id="New Cases" formControlName="newCases" (change)="columnChange()"><label for="New Cases">New Cases</label>
+        <input type ="checkbox" id="Cumulative Cases"formControlName="cumulativeCases" (change)="columnChange()"><label for="Cumulative Cases">Cumulative Cases</label>
+        <input type ="checkbox" id="New Deaths" formControlName="newDeaths" (change)="columnChange()"><label for="New Deaths">New Deaths</label>
+        <input type ="checkbox" id="Cumulative Deaths" formControlName="cumulativeDeaths" (change)="columnChange()"><label for="Cumulative Deaths">Cumulative Deaths</label>
+        <input type ="checkbox" id="New Recovered" formControlName="newRecovered" (change)="columnChange()"><label for="New Cases">New Recovered</label>
+        <input type ="checkbox" id="Cumulative Recovered" formControlName="cumulativeRecovered" (change)="columnChange()"><label for="Cumulative Recovered">Cumulative Recovered</label>
+        <br>
+<!--Time (text): Start date, End date  -->
+        <h2>Date</h2>
+        <span>Enter DD/MM/YYYY</span><br><br>
+        <label>Start date</label><input type = "text" [(ngModel)] = "startDate" formControlName="startDate" placeholder = "YYYY-MM-DD">&nbsp;&nbsp;
+        <label>End date</label><input type = "text" [(ngModel)] = "endDate" formControlName="endDate" placeholder="YYYY-MM-DD">
+    </form>
+    <br><br>
+</div>
+<div>
+    <table>
+        <tr>
+            <th *ngIf = "federal">Federal</th>
+            <th *ngIf = "provincial">Province</th>
+            <th *ngIf = "regional">Region</th>
+            <th *ngIf = "newCases">New Cases </th>
+            <th *ngIf = "cumulativeCases">Cumulative Cases</th>
+            <th *ngIf = "newDeaths">New Deaths</th>
+            <th *ngIf = "cumulativeDeaths">Cumulative Deaths</th>
+            <th *ngIf = "newRecovered">New Recovered</th>
+            <th *ngIf = "cumulativeRecovered">Cumulative Recovered</th>
+
+        </tr>
+        <tr *ngFor = "let data of d">
+            <td *ngIf = "federal">Canada</td>
+            <td *ngIf = "provincial">{{ data.province }}</td>
+            <td *ngIf = "regional"> {{ data.health_region }}</td>
+            <td *ngIf = "newCases">{{ data.cases }}</td>
+            <td *ngIf = "cumulativeCases">{{ data.cumulative_cases }}</td>
+            <td *ngIf = "newDeaths">{{ data.deaths }}</td>
+            <td *ngIf = "cumulativeDeaths">{{ data.cumulative_deaths }}</td>
+            <td *ngIf= "newRecovered">{{ data.recovered }}</td>
+            <td *ngIf = "cumulativeRecovered">{{ data.cumulative_recovered }}</td>
+        </tr>
+    </table>
+    <app-fetch-api></app-fetch-api>
+</div>
