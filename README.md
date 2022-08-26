@@ -1,4 +1,6 @@
 # Covid19DataViewer
+Testing deployment with aws
+web: http://jackdnguyen-covid19-dataviewer.s3-website-us-west-1.amazonaws.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
 
