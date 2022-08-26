@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, NgModel } from '@angular/forms'
+import { TableObject } from '../object_interface';
+import { TableService } from '../table_services';
 
 @Component({
   selector: 'app-table',
@@ -17,12 +19,12 @@ export class TableComponent implements OnInit {
   cumulativeCases: boolean = false;
   newDeaths: boolean = true;
   cumulativeDeaths: boolean = false;
-  newRecovered: boolean = true;
-  cumulativeRecovered: boolean = false;
+  newHospitalizations: boolean = true;
+  cumulativeHospitalizations: boolean = false;
   startDate: string = '';
   endDate: string = '';
 
-  constructor() { }
+  constructor(private ts:TableService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -33,14 +35,16 @@ export class TableComponent implements OnInit {
       cumulativeCases: new FormControl(false),
       newDeaths: new FormControl(true),
       cumulativeDeaths: new FormControl(false),
-      newRecovered: new FormControl(true),
-      cumulativeRecovered: new FormControl(false),
+      newHospitalizations: new FormControl(true),
+      cumulativeHospitalizations: new FormControl(false),
       startDate: new FormControl(''),
       endDate: new FormControl('')
     })
+    this.ts.dataChange.subscribe(e => this.dataChange());
   }
   columnChange() {
     this.editTable(this.form.value);
+    this.ts.updateForm(this.form.value);
   }
   editTable(table: any) {
     console.log(table)
@@ -51,11 +55,13 @@ export class TableComponent implements OnInit {
     this.cumulativeCases = table.cumulativeCases
     this.newDeaths = table.newDeaths
     this.cumulativeDeaths = table.cumulativeDeaths
-    this.newRecovered = table.newRecovered
-    this.cumulativeRecovered = table.cumulativeRecovered
+    this.newHospitalizations = table.newHospitalizations
+    this.cumulativeHospitalizations = table.cumulativeHospitalizations
     this.startDate = table.startDate
     this.endDate = table.endDate
   }
   dataChange() {
+    console.log("Table Talking");
+    this.d = this.ts.getTableData();
   }
 }
