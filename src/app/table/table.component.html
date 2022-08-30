@@ -5,7 +5,7 @@
         <div id="location" class="column">
             <button (click)="showLocation()">Location</button>
             <label *ngIf="location"><input type="checkbox" value="Federal" formControlName="federal"
-                    (change)="columnChange()">Federal asdasdasdasda </label>
+                    (change)="columnChange()">Federal</label>
             <label *ngIf="location"><input type="checkbox" value="Provincial" formControlName="provincial"
                     (change)="columnChange()">Provincial</label>
             <label *ngIf="location"><input type="checkbox" formControlName="regional"
@@ -31,17 +31,20 @@
         </div>
         <!--Time (text): Start date, End date  -->
         <div class="column" id="date">
-            <button>Date</button>
-            <label>Start date<input type="text" [(ngModel)]="startDate" formControlName="startDate"
+            <button (click)="showDate()">Date</button>
+            <label *ngIf="date">Start date<input type="text" [(ngModel)]="startDate" formControlName="startDate"
                 placeholder="YYYY-MM-DD"></label>
-            <label>End date<input type="text" [(ngModel)]="endDate" formControlName="endDate"
+            <label *ngIf="date">End date<input type="text" [(ngModel)]="endDate" formControlName="endDate"
                 placeholder="YYYY-MM-DD"></label>
+        </div>
+        <div class="column" id="fetch">
+            <app-fetch-api></app-fetch-api>
         </div>
     </nav>
 </form>
 <br><br>
 <div>
-    <table>
+    <table class="center">
         <tr>
             <th *ngIf="federal">Federal</th>
             <th *ngIf="provincial">Province</th>
@@ -66,5 +69,4 @@
             <td *ngIf="cumulativeHospitalizations">{{ data.allHospitalized }}</td>
         </tr>
     </table>
-    <app-fetch-api></app-fetch-api>
 </div>

@@ -24,17 +24,12 @@ div:hover label.only-show-on-hover  {
 
 .navbar {
     width:100%;
-    background-color: var(--soft-dark);
-    border-radius: 5px;
-    margin: 10px auto;
-    padding: 2rem 0;
     display: flex;
     justify-content: center;
     position: relative;
-    /* flex: auto; */
 }
   .navbar > * {
-    margin-right: 10rem;
+    margin-right: 9rem;
   }
   
   .navbar > *:last-child {
@@ -43,14 +38,13 @@ div:hover label.only-show-on-hover  {
 
 #location {
     position:relative;
-    display:flexbox;
     justify-items: center;
     justify-content: center;
     align-items: center;
     height:50px;
     width:100px;
 }
-#column{
+.column{
     display:inline-block;
 }
 #stats{
@@ -59,17 +53,37 @@ div:hover label.only-show-on-hover  {
     width:100px;
     align-items: center;
     justify-content: center;
+
 }
 label{
     display:block;
     height:50px;
-    width:100px;
+    width:15rem;
+    background-color:  #E5E5E5;
+    border-block: 1em;
 }
 #date {
+    position:relative;
     height:50px;
     width:100px;
+    align-items: center;
+    justify-content: center;
+
 }
 button {
     width: 15rem;
     height:3rem;
+    border:none;
+    background-color:  #E5E5E5;
+}
+form {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+}
+.center{
+    margin-left: auto;
+    margin-right:auto;
+}
+app-fetch-api {
+    position:relative;
 }

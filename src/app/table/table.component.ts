@@ -26,6 +26,7 @@ export class TableComponent implements OnInit {
 
   location = false;
   stats = false;
+  date = false;
   constructor(private ts:TableService) { }
 
   ngOnInit(): void {
@@ -72,5 +73,8 @@ export class TableComponent implements OnInit {
   }
   showStats(){
     this.stats = !this.stats;
+  }
+  showDate(){
+    this.date = !this.date;
   }
 }

@@ -1,3 +1,14 @@
+body {
+    background-color:black;
+}
 h1 {
     text-align: center;
 }
+.image{
+    height:50em; background-size:cover; width:max-content;
+    background-image:url('./background.png');
+    background-position:50% 50%;
+    background-size: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
