@@ -14,3 +14,62 @@ table th{
     padding-left: 50px;
     padding-right: 50px;
 }
+
+div label.only-show-on-hover {
+    visibility: hidden;
+}
+div:hover label.only-show-on-hover  {
+    visibility: visible;
+}
+
+.navbar {
+    width:100%;
+    background-color: var(--soft-dark);
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* flex: auto; */
+}
+  .navbar > * {
+    margin-right: 10rem;
+  }
+  
+  .navbar > *:last-child {
+    margin-right: 0;
+  }
+
+#location {
+    position:relative;
+    display:flexbox;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    height:50px;
+    width:100px;
+}
+#column{
+    display:inline-block;
+}
+#stats{
+    position:relative;
+    height:50px;
+    width:100px;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    display:block;
+    height:50px;
+    width:100px;
+}
+#date {
+    height:50px;
+    width:100px;
+}
+button {
+    width: 15rem;
+    height:3rem;
+}

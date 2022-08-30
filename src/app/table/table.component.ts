@@ -14,7 +14,7 @@ export class TableComponent implements OnInit {
   // Table Data
   federal: boolean = false;
   provincial: boolean = true;
-  regional: boolean = false;
+  regional = false;
   newCases: boolean = true;
   cumulativeCases: boolean = false;
   newDeaths: boolean = true;
@@ -24,6 +24,8 @@ export class TableComponent implements OnInit {
   startDate: string = '';
   endDate: string = '';
 
+  location = false;
+  stats = false;
   constructor(private ts:TableService) { }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class TableComponent implements OnInit {
   }
   editTable(table: any) {
     console.log(table)
+    console.log(this.regional);
     this.federal = table.federal
     this.provincial = table.provincial
     this.regional = table.regional
@@ -63,5 +66,11 @@ export class TableComponent implements OnInit {
   dataChange() {
     console.log("Table Talking");
     this.d = this.ts.getTableData();
+  }
+  showLocation(){
+    this.location = !this.location;
+  }
+  showStats(){
+    this.stats = !this.stats;
   }
 }
