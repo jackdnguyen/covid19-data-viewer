@@ -21,12 +21,14 @@ export class TableComponent implements OnInit {
   cumulativeDeaths: boolean = false;
   newHospitalizations: boolean = true;
   cumulativeHospitalizations: boolean = false;
-  startDate: string = '';
-  endDate: string = '';
+  startDate: string = '2022-03-03';
+  endDate: string = '2022-03-03';
 
   location = false;
   stats = false;
   date = false;
+  hasError = false;
+  error = "[ ! ] start date too low";
   constructor(private ts:TableService) { }
 
   ngOnInit(): void {
@@ -40,12 +42,13 @@ export class TableComponent implements OnInit {
       cumulativeDeaths: new FormControl(false),
       newHospitalizations: new FormControl(true),
       cumulativeHospitalizations: new FormControl(false),
-      startDate: new FormControl(''),
-      endDate: new FormControl('')
+      startDate: new FormControl('2022-03-03'),
+      endDate: new FormControl('2022-03-03')
     })
     this.ts.dataChange.subscribe(e => this.dataChange());
   }
   columnChange() {
+    console.log("Column Change");
     this.editTable(this.form.value);
     this.ts.updateForm(this.form.value);
   }
@@ -61,12 +64,13 @@ export class TableComponent implements OnInit {
     this.cumulativeDeaths = table.cumulativeDeaths
     this.newHospitalizations = table.newHospitalizations
     this.cumulativeHospitalizations = table.cumulativeHospitalizations
-    this.startDate = table.startDate
-    this.endDate = table.endDate
   }
   dataChange() {
     console.log("Table Talking");
     this.d = this.ts.getTableData();
+    let form = this.ts.getForm()
+    this.startDate = form.startDate
+    this.endDate = form.endDate
   }
   showLocation(){
     this.location = !this.location;
@@ -77,4 +81,5 @@ export class TableComponent implements OnInit {
   showDate(){
     this.date = !this.date;
   }
+
 }

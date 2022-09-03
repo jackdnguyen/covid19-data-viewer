@@ -1,89 +1,221 @@
-table{
-    border-collapse: collapse;
-    border: 1px solid;
+table {
+    border-collapse: collapse;                                                                                                                                                                                                                                
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.253);
+    background-color: rgba(3, 3, 3, 0.808);
 }
-table td{
-    border: 1px solid;
-    padding: 5px;
-    padding-left: 50px;
-    padding-right: 50px;
+#time-period {
+    padding-top:.5rem;
+    display: inline-block;
+    width:100%;
+    color:#ffffff;
 }
-table th{
-    border: 1px solid;
-    padding: 5px;
-    padding-left: 50px;
-    padding-right: 50px;
+th,
+td {
+    padding: 15px;
+    color: rgb(240, 240, 240);
+}                         
+.highlighted {
+    background-color: #348A75;
 }
 
-div label.only-show-on-hover {
-    visibility: hidden;
+th {
+    text-align: left;
 }
-div:hover label.only-show-on-hover  {
-    visibility: visible;
+
+thead>th {
+    background-color: #55608f;
+}
+
+tr:hover {
+    background-color: rgba(78, 78, 78, 0.596);
+}
+
+th:hover,td:hover{
+    background-color: rgba(136, 123, 123, 0.664);
 }
 
 .navbar {
-    width:100%;
+    top:-.6rem;
+    width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
 }
-  .navbar > * {
-    margin-right: 9rem;
-  }
-  
-  .navbar > *:last-child {
+
+.navbar>* {
+    margin-right: 8.5rem;
+}
+
+.navbar>*:last-child {
     margin-right: 0;
-  }
+}
 
 #location {
-    position:relative;
+    position: relative;
     justify-items: center;
     justify-content: center;
     align-items: center;
-    height:50px;
-    width:100px;
+    height: 50px;
+    width: 100px;
 }
-.column{
-    display:inline-block;
+
+.column {
+    display: inline-block;
+    padding-left: .3rem;
+    padding-bottom: .3rem;
 }
-#stats{
-    position:relative;
-    height:50px;
-    width:100px;
+
+#stats {
+    position: relative;
+    justify-content: center;
+    height: 50px;
+    width: 100px;
     align-items: center;
     justify-content: center;
 
 }
-label{
-    display:block;
-    height:50px;
-    width:15rem;
-    background-color:  #E5E5E5;
-    border-block: 1em;
+
+label {
+    display:inline;
+    padding-top:.5rem;
+    display: block;
+    height: 50px;
+    width: 14.6rem;
 }
+
+
+label:hover{
+    color:#ffffff
+}
+
 #date {
-    position:relative;
-    height:50px;
-    width:100px;
+    position: relative;
+    height: 50px;
+    width: 100px;
     align-items: center;
     justify-content: center;
 
 }
+
 button {
     width: 15rem;
-    height:3rem;
-    border:none;
-    background-color:  #E5E5E5;
+    height: 2.5rem;
+    border: none;
+    border-radius: 2px;
+    background-color: #c26464;
+    background-color: #303031;
+    font-size: large;
+    color:#d3d3d3;
+}
+button:hover{
+    color:#ffffff;
 }
 form {
     padding-top: 1.5rem;
-    padding-bottom: 3rem;
+    height:2.5rem;
+    background-color: #3e3e3f;
+    background-color: #303031;
 }
-.center{
+
+.center {
     margin-left: auto;
-    margin-right:auto;
+    margin-right: auto;
 }
+
 app-fetch-api {
-    position:relative;
+    position: relative;
+}
+
+#locateButton {
+    margin-bottom: .25rem;
+}
+
+#statsButton {
+    margin-bottom: .25rem;
+}
+
+#dateButton {
+    margin-bottom: .25rem;
+}
+
+.dropDown{
+    background-color: #252525;
+    color:#cecaca;
+    font-size: large;
+    border-radius: 4.5px;
+    width: 14.6rem;
+}
+.dropDown > label {
+    top:1rem;
+    margin-left:.2rem;
+}
+#location .dropDown label{
+    padding-left:.7rem;
+}
+.dateDropDown{
+    background-color: #252525;
+    border-radius: 4.5px;
+    color:#cecaca;
+    font-size: large;
+    width: 14.6rem;
+}
+#textInput{
+    width:7rem;
+    padding-left:1rem;
+    border:none;
+    border-radius: 4px;
+}
+.dateDropDown label{
+    width:5rem;
+    padding-left: .7rem;
+}
+.error{
+    display:inline;
+    padding-top:.5rem;
+    display: block;
+    height: 2rem;
+    width: 14rem;
+    padding-left:1rem;
+    color: #c93c3c;
+}
+.end{
+    padding-bottom: 1rem;
+}
+input {
+    accent-color: #c93c3c;
+}
+@media only screen and (max-width:1220px) {
+    .navbar {
+        display: table;
+        left: 15rem;
+    }
+
+    #stats {
+        display:inline-block;
+        width: 50%
+    }
+    form {
+        height:fit-content;
+    }
+}
+
+@media only screen and (max-width:790px) {
+    .navbar {
+        display: table;
+        left: 10rem;
+    }
+
+    #location {
+        display:table-row;
+    }
+    #stats {
+        display:table-row;
+    }
+    #date{
+        display:table-row;
+    }
+    #fetch{
+        display:table-row;
+    }
 }

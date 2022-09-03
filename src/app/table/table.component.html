@@ -1,41 +1,51 @@
 <!--Location (checkbox): Federal, Provincial, Regional -->
+<script src="../../assets/table.js"></script>
 <form [formGroup]="form" id="form">
     <!--(change) = onChange(form.value)-->
-    <nav class ="navbar">
-        <div id="location" class="column">
-            <button (click)="showLocation()">Location</button>
-            <label *ngIf="location"><input type="checkbox" value="Federal" formControlName="federal"
-                    (change)="columnChange()">Federal</label>
-            <label *ngIf="location"><input type="checkbox" value="Provincial" formControlName="provincial"
-                    (change)="columnChange()">Provincial</label>
-            <label *ngIf="location"><input type="checkbox" formControlName="regional"
-                    (change)="columnChange()">Regional</label>
-                    
+    <nav class="navbar">
+        <div class="column" id="location">
+            <button (click)="showLocation()" id="locateButton">Location</button>
+            <div class="dropDown">
+                <label *ngIf="location"><input type="checkbox" value="Federal" formControlName="federal"
+                        (change)="columnChange()">Federal</label>
+                <label *ngIf="location"><input type="checkbox" value="Provincial" formControlName="provincial"
+                        (change)="columnChange()">Provincial</label>
+                <label *ngIf="location" id="endLocate"><input type="checkbox" formControlName="regional"
+                        (change)="columnChange()">Regional</label>
+            </div>
+
         </div>
-        <!--Stat (checkbox): New Cases, Cumulative Cases, New Deaths, Cumulative Deaths, New Recovered, Cumulative Recovered-->
-        <div class = "column" id="stats">
-            <button (click)="showStats()">Stats</button>
-            <label for="New Cases" *ngIf="stats"><input type="checkbox" id="New Cases" formControlName="newCases"
-                    (change)="columnChange()">New Cases</label>
-            <label for="Cumulative Cases" *ngIf="stats"><input type="checkbox" id="Cumulative Cases" formControlName="cumulativeCases"
-                    (change)="columnChange()">Cumulative Cases</label>
-            <label for="New Deaths" *ngIf="stats"><input type="checkbox" id="New Deaths" formControlName="newDeaths"
-                    (change)="columnChange()">New Deaths</label>
-            <label for="Cumulative Deaths" *ngIf="stats"><input type="checkbox" id="Cumulative Deaths" formControlName="cumulativeDeaths"
-                    (change)="columnChange()">Cumulative Deaths</label>
-            <label for="New Hospitalizations" *ngIf="stats"><input type="checkbox" id="New Hospitalizations"
-                    formControlName="newHospitalizations" (change)="columnChange()">New Hospitalizations</label>
-            <label for="Cumulative Hospitalizations" *ngIf="stats"><input type="checkbox" id="Cumulative Hospitalizations"
-                    formControlName="cumulativeHospitalizations" (change)="columnChange()">Cumulative
-                Hospitalizations</label>
+        <!--Stat (checkbox): New Cases, Cumulative Cases, New Deaths, Cumulative Deaths, New Hospitalized, Cumulative Hospitalized-->
+        <div class="column" id="stats">
+            <button (click)="showStats()" id="statsButton">Stats</button>
+            <div class="dropDown">
+                <label *ngIf="stats"><input type="checkbox" id="New Cases" formControlName="newCases"
+                        (change)="columnChange()">New Cases</label>
+                <label *ngIf="stats"><input type="checkbox" id="Cumulative Cases"
+                        formControlName="cumulativeCases" (change)="columnChange()">Cumulative Cases</label>
+                <label *ngIf="stats"><input type="checkbox" id="New Deaths" formControlName="newDeaths"
+                        (change)="columnChange()">New Deaths</label>
+                <label *ngIf="stats"><input type="checkbox" id="Cumulative Deaths"
+                        formControlName="cumulativeDeaths" (change)="columnChange()">Cumulative Deaths</label>
+                <label *ngIf="stats"><input type="checkbox" id="New Hospitalizations"
+                        formControlName="newHospitalizations" (change)="columnChange()">New Hospitalizations</label>
+                <label *ngIf="stats"><input type="checkbox"
+                        id="Cumulative Hospitalizations" formControlName="cumulativeHospitalizations"
+                        (change)="columnChange()">Cumulative
+                    Hospitalizations</label>
+            </div>
+
         </div>
         <!--Time (text): Start date, End date  -->
         <div class="column" id="date">
-            <button (click)="showDate()">Date</button>
-            <label *ngIf="date">Start date<input type="text" [(ngModel)]="startDate" formControlName="startDate"
-                placeholder="YYYY-MM-DD"></label>
-            <label *ngIf="date">End date<input type="text" [(ngModel)]="endDate" formControlName="endDate"
-                placeholder="YYYY-MM-DD"></label>
+            <button (click)="showDate()" id="dateButton">Date</button>
+            <div class="dateDropDown">
+                <label *ngIf="date">Start date<input id="textInput" type="text" formControlName="startDate" (change)="columnChange()"
+                        placeholder="YYYY-MM-DD"></label>
+                <label *ngIf="date" class="end">End date<input id="textInput" type="text" formControlName="endDate" (change)="columnChange()"
+                        placeholder="YYYY-MM-DD"></label>
+                <span [ngModel]="error" *ngIf="hasError" class="error">{{ error }}</span>
+            </div>
         </div>
         <div class="column" id="fetch">
             <app-fetch-api></app-fetch-api>
@@ -43,8 +53,18 @@
     </nav>
 </form>
 <br><br>
-<div>
+<div class="container">
     <table class="center">
+        <tr><td colspan="3"><span id="time-period">Showing Period: {{ startDate }} to {{ endDate }}</span></td></tr>
+        <col *ngIf="federal" />
+        <col *ngIf="provincial" />
+        <col *ngIf="regional" />
+        <col *ngIf="newCases" />
+        <col *ngIf="cumulativeCases" />
+        <col *ngIf="newDeaths" />
+        <col *ngIf="cumulativeDeaths" />
+        <col *ngIf="newHospitalizations" />
+        <col *ngIf="cumulativeHospitalizations" />
         <tr>
             <th *ngIf="federal">Federal</th>
             <th *ngIf="provincial">Province</th>
@@ -58,7 +78,7 @@
 
         </tr>
         <tr *ngFor="let data of d">
-            <td *ngIf="federal">Canada</td>
+            <td *ngIf="federal"> {{ data.country }}</td>
             <td *ngIf="provincial">{{ data.province }}</td>
             <td *ngIf="regional"> {{ data.health_region }}</td>
             <td *ngIf="newCases">{{ data.cases }}</td>
