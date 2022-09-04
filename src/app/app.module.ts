@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,7 @@ import { FetchApiComponent } from './fetch-api/fetch-api.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

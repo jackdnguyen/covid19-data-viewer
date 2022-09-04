@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, AbstractControl, NgModel } from '@a
 import { TableObject } from '../object_interface';
 import { TableService } from '../table_services';
 
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -29,6 +30,11 @@ export class TableComponent implements OnInit {
   date = false;
   hasError = false;
   error = "[ ! ] start date too low";
+  startErr = false;
+  endErr = false;
+
+
+
   constructor(private ts:TableService) { }
 
   ngOnInit(): void {
@@ -46,6 +52,7 @@ export class TableComponent implements OnInit {
       endDate: new FormControl('2022-03-03')
     })
     this.ts.dataChange.subscribe(e => this.dataChange());
+    this.ts.hasError.subscribe(e => this.updateError())
   }
   columnChange() {
     console.log("Column Change");
@@ -66,8 +73,9 @@ export class TableComponent implements OnInit {
     this.cumulativeHospitalizations = table.cumulativeHospitalizations
   }
   dataChange() {
-    console.log("Table Talking");
-    this.d = this.ts.getTableData();
+    console.log("Table Talking")
+    this.hasError = false
+    this.d = this.ts.getTableData()
     let form = this.ts.getForm()
     this.startDate = form.startDate
     this.endDate = form.endDate
@@ -81,5 +89,11 @@ export class TableComponent implements OnInit {
   showDate(){
     this.date = !this.date;
   }
-
+  updateError(){
+    let errorObj = this.ts.getError()
+    this.error = errorObj.errorMessage
+    this.startErr = errorObj.start
+    this.endErr = errorObj.end
+    this.hasError = true
+  }
 }

@@ -41,9 +41,9 @@
             <button (click)="showDate()" id="dateButton">Date</button>
             <div class="dateDropDown">
                 <label *ngIf="date">Start date<input id="textInput" type="text" formControlName="startDate" (change)="columnChange()"
-                        placeholder="YYYY-MM-DD"></label>
+                        placeholder="YYYY-MM-DD" [ngStyle] = "startErr && {'border': 'red', 'border-style':'groove'} || null" [dropSpecialCharacters]="false" mask="0000-00-00"></label>
                 <label *ngIf="date" class="end">End date<input id="textInput" type="text" formControlName="endDate" (change)="columnChange()"
-                        placeholder="YYYY-MM-DD"></label>
+                        placeholder="YYYY-MM-DD" [ngStyle] = "endErr && {'border': 'red', 'border-style':'groove'} || null" [dropSpecialCharacters]="false" mask="0000-00-00"></label>
                 <span [ngModel]="error" *ngIf="hasError" class="error">{{ error }}</span>
             </div>
         </div>

@@ -16,11 +16,8 @@ export class FetchApiComponent implements OnInit {
   }
   fetchAPI() {
     let form = this.ts.getForm()
-    let start = form.startDate.replace(/\-/g, "")
-    let end = form.endDate.replace(/\-/g, "")
-
-    if (this.dateValidator(parseInt(start), parseInt(end))) {
-
+    let valid = this.dateValidator(form.startDate, form.endDate)
+    if (valid) {
       let url = `https://api.opencovid.ca/summary?geo=pt&after=${form.startDate}&before=${form.endDate}&fill=true&version=true&pt_names=short&hr_names=hruid&fmt=json`
       let tableData: any = [];
       this.http.get<API>(url).subscribe((json) => {
@@ -42,7 +39,34 @@ export class FetchApiComponent implements OnInit {
       console.log("ERROR!!")
     }
   }
-  dateValidator(start: number, end: number) {
+  dateValidator(startString: string, endString: string) {
+    console.log(startString)
+    console.log(endString)
+
+    let startArr = startString.split("-")
+    let endArr = endString.split("-")
+    let flag = false;
+
+    if(startArr.length != 3 && endArr.length != 3){
+      this.ts.errorCall("[!] Format YYYY-MM-DD", true, true)
+      flag = true;
+    } else if(startArr.length != 3 && endArr.length == 3){
+      this.ts.errorCall("[!] Format YYYY-MM-DD", true, false)
+      flag = true;
+    } else if(startArr.length == 3 && endArr.length != 3){
+      this.ts.errorCall("[!] Format YYYY-MM-DD", false, true)
+      flag = true;
+    }
+    if(flag) return false;
+
+    if(parseInt(startArr[2]) > 31 || parseInt(endArr[2]) > 31){
+      console.log("Invalid Day")
+      return false
+    }
+
+    let start = parseInt(startString.replace(/\-/g, ""))
+    let end = parseInt(endString.replace(/\-/g, ""))
+
     if(start > end){
       console.log("error: start > end")
       return false

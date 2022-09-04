@@ -26,8 +26,18 @@ export class TableService {
     dataUpdate = new BehaviorSubject({
         dataChange:false
     });
-
     dataChange = this.dataUpdate.asObservable();
+
+    errorObj = {
+        errorMessage:"",
+        start:false,
+        end:false
+    }
+    error = new BehaviorSubject({
+        error:false
+    })
+    hasError = this.error.asObservable();
+
 
     ngOnInit(): void { }
 
@@ -46,5 +56,14 @@ export class TableService {
     }
     getTableData(){
         return this.tableData;
+    }
+    errorCall(message:string, start:boolean, end:boolean){
+        this.errorObj.errorMessage = message
+        this.errorObj.start = start
+        this.errorObj.end = end
+        this.error.next({error:true})
+    }
+    getError(){
+        return this.errorObj
     }
 }

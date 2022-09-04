@@ -23,10 +23,6 @@ th {
     text-align: left;
 }
 
-thead>th {
-    background-color: #55608f;
-}
-
 tr:hover {
     background-color: rgba(78, 78, 78, 0.596);
 }
@@ -103,7 +99,6 @@ button {
     height: 2.5rem;
     border: none;
     border-radius: 2px;
-    background-color: #c26464;
     background-color: #303031;
     font-size: large;
     color:#d3d3d3;
@@ -114,7 +109,6 @@ button:hover{
 form {
     padding-top: 1.5rem;
     height:2.5rem;
-    background-color: #3e3e3f;
     background-color: #303031;
 }
 
@@ -176,9 +170,10 @@ app-fetch-api {
     display: block;
     height: 2rem;
     width: 14rem;
-    padding-left:1rem;
+    padding-left:.5rem;
     color: #c93c3c;
 }
+
 .end{
     padding-bottom: 1rem;
 }
