@@ -1,14 +1,13 @@
-<p>charts works!</p>
-<div class="multi">
-    <ngx-charts-bar-vertical-2d
-    [view] = "[1000,700]"
-    [results]="multi"
-    [gradient]="gradient"
-    [legend]="true"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    style="fill: white; background-color:azure;"
-    ></ngx-charts-bar-vertical-2d>
+<div class="container">
+    <div class="multi">
+        <span>Provincial</span>
+        <ngx-charts-bar-vertical-2d [view]="[700,600]" [scheme]="colorScheme" [results]="multi" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            style="fill: white;"></ngx-charts-bar-vertical-2d>
+    </div>
+    <div class="single">
+        <span>Federal</span>
+        <ngx-charts-pie-chart [view]="[700,600]" [scheme]="colorScheme" [results]="single"
+  [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient" style="fill: white;"></ngx-charts-pie-chart>
+    </div>
 </div>

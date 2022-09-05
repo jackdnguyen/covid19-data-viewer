@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Color, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-charts',
@@ -23,8 +24,12 @@ export class ChartsComponent implements OnInit {
   yAxisLabel = 'Sales';
   timeline = true;
   doughnut = true;
-  colorScheme = {
-    domain: ['#9370DB', '#87CEFA', '#FA8072', '#FF7F50', '#90EE90', '#9370DB']
+
+  colorScheme: Color = {
+    name: 'myScheme',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: ['#bea989', '#bb5a5a', '#5e476d'],
   };
   //pie
   showLabels = true;
@@ -39,7 +44,7 @@ export class ChartsComponent implements OnInit {
         },
         {
           "name": "New Deaths",
-          "value": 7
+          "value": 100
         },
         {
           "name": "New Recovered",
@@ -270,7 +275,20 @@ export class ChartsComponent implements OnInit {
     },
 
   ];
-
+  public single = [
+    {
+      "name": "New Cases",
+      "value": 2243772
+    },
+    {
+      "name": "New Deaths",
+      "value": 1126000
+    },
+    {
+      "name": "New Hospitalized",
+      "value": 296215
+    },
+  ];
   constructor() { }
 
   ngOnInit(): void {
