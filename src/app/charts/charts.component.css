@@ -1,0 +1,13 @@
+p {
+    color:white
+}
+.multi {
+    background: gray;
+    color: white;
+    margin-left:10rem;
+}
+::ng-deep .ngx-charts { 
+    text{
+        fill: #fff
+    }
+}

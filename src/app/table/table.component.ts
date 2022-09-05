@@ -49,7 +49,8 @@ export class TableComponent implements OnInit {
       newHospitalizations: new FormControl(true),
       cumulativeHospitalizations: new FormControl(false),
       startDate: new FormControl('2022-03-03'),
-      endDate: new FormControl('2022-03-03')
+      endDate: new FormControl('2022-03-03'),
+      error: new FormControl('')
     })
     this.ts.dataChange.subscribe(e => this.dataChange());
     this.ts.hasError.subscribe(e => this.updateError())
@@ -74,6 +75,8 @@ export class TableComponent implements OnInit {
   }
   dataChange() {
     console.log("Table Talking")
+    this.startErr = false
+    this.endErr = false
     this.hasError = false
     this.d = this.ts.getTableData()
     let form = this.ts.getForm()
@@ -92,6 +95,7 @@ export class TableComponent implements OnInit {
   updateError(){
     let errorObj = this.ts.getError()
     this.error = errorObj.errorMessage
+    this.form.controls['error'].setValue(errorObj.errorMessage)
     this.startErr = errorObj.start
     this.endErr = errorObj.end
     this.hasError = true

@@ -44,7 +44,7 @@
                         placeholder="YYYY-MM-DD" [ngStyle] = "startErr && {'border': 'red', 'border-style':'groove'} || null" [dropSpecialCharacters]="false" mask="0000-00-00"></label>
                 <label *ngIf="date" class="end">End date<input id="textInput" type="text" formControlName="endDate" (change)="columnChange()"
                         placeholder="YYYY-MM-DD" [ngStyle] = "endErr && {'border': 'red', 'border-style':'groove'} || null" [dropSpecialCharacters]="false" mask="0000-00-00"></label>
-                <span [ngModel]="error" *ngIf="hasError" class="error">{{ error }}</span>
+                <span *ngIf="hasError" class="error" >{{ form.value.error }}</span>
             </div>
         </div>
         <div class="column" id="fetch">
@@ -80,7 +80,7 @@
         <tr *ngFor="let data of d">
             <td *ngIf="federal"> {{ data.country }}</td>
             <td *ngIf="provincial">{{ data.province }}</td>
-            <td *ngIf="regional"> {{ data.health_region }}</td>
+            <td *ngIf="regional"> {{ data.regionCode }}</td>
             <td *ngIf="newCases">{{ data.cases }}</td>
             <td *ngIf="cumulativeCases">{{ data.allCases }}</td>
             <td *ngIf="newDeaths">{{ data.deaths }}</td>

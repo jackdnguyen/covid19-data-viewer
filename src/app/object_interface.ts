@@ -23,6 +23,6 @@ export interface TableData {
     allCases:number,
     deaths:number,
     allDeaths:number,
-    hospitalized:number,
-    allHospitalized:number
+    hospitalized?:any,
+    allHospitalized?:number
 }
