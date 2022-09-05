@@ -1,13 +1,22 @@
 <div class="container">
-    <div class="multi">
+    <div class="multi" *ngIf="provincial">
         <span>Provincial</span>
-        <ngx-charts-bar-vertical-2d [view]="[700,600]" [scheme]="colorScheme" [results]="multi" [xAxis]="showXAxis"
+        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multi" [xAxis]="showXAxis"
             [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
             style="fill: white;"></ngx-charts-bar-vertical-2d>
     </div>
-    <div class="single">
+    <div class="single" *ngIf="federal">
         <span>Federal</span>
-        <ngx-charts-pie-chart [view]="[700,600]" [scheme]="colorScheme" [results]="single"
-  [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient" style="fill: white;"></ngx-charts-pie-chart>
+        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            style="fill: white;"></ngx-charts-bar-vertical>
+    </div>
+</div>
+<div class="container2" *ngIf="regional">
+    <div class="regional">
+        <span id="region">Regional New Cases</span>
+        <ngx-charts-bar-vertical [view]="[1500,600]" [scheme]="colorScheme2" [results]="regionalSingle" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            style="fill: white;"></ngx-charts-bar-vertical>
     </div>
 </div>

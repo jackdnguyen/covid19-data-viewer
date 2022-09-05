@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
   form!: FormGroup;
   d: any;
   // Table Data
-  federal: boolean = false;
+  federal: boolean = true;
   provincial: boolean = true;
   regional = false;
   newCases: boolean = true;
@@ -39,7 +39,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      federal: new FormControl(false),
+      federal: new FormControl(true),
       provincial: new FormControl(true),
       regional: new FormControl(false),
       newCases: new FormControl(true),

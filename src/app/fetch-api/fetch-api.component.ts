@@ -160,6 +160,18 @@ export class FetchApiComponent implements OnInit {
     }
     if (flag) return false;
 
+    if (parseInt(startArr[1]) > 12 && parseInt(endArr[1]) > 12) {
+      this.ts.errorCall("[!] Invalid Day", true, true)
+      flag = true
+    } else if (parseInt(startArr[1]) > 12 && parseInt(endArr[1]) <= 12) {
+      this.ts.errorCall("[!] Invalid Day", true, false)
+      flag = true
+    } else if (parseInt(startArr[1]) <= 12 && parseInt(endArr[1]) > 12) {
+      this.ts.errorCall("[!] Invalid Day", false, true)
+      flag = true
+    }
+    if (flag) return false;
+
     let start = parseInt(startString.replace(/\-/g, ""))
     let end = parseInt(endString.replace(/\-/g, ""))
 

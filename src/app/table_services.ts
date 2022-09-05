@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class TableService {
 
     form: TableObject = {
-        federal: false,
+        federal: true,
         provincial: true,
         regional: false,
         newCases: true,
