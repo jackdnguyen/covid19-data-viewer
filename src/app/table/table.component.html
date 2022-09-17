@@ -7,42 +7,41 @@
             <button (click)="showLocation()" id="locateButton">Location</button>
             <div class="dropDown">
                 <label *ngIf="location"><input type="checkbox" value="Federal" formControlName="federal"
-                        (change)="columnChange()">Federal</label>
+                        (change)="columnChange(1)">Federal</label>
                 <label *ngIf="location"><input type="checkbox" value="Provincial" formControlName="provincial"
-                        (change)="columnChange()">Provincial</label>
+                        (change)="columnChange(1)">Provincial</label>
                 <label *ngIf="location" id="endLocate"><input type="checkbox" formControlName="regional"
-                        (change)="columnChange()">Regional</label>
+                        (change)="columnChange(1)">Regional</label>
             </div>
-
         </div>
         <!--Stat (checkbox): New Cases, Cumulative Cases, New Deaths, Cumulative Deaths, New Hospitalized, Cumulative Hospitalized-->
         <div class="column" id="stats">
             <button (click)="showStats()" id="statsButton">Stats</button>
             <div class="dropDown">
                 <label *ngIf="stats"><input type="checkbox" id="New Cases" formControlName="newCases"
-                        (change)="columnChange()">New Cases</label>
+                        (change)="columnChange(0)">New Cases</label>
                 <label *ngIf="stats"><input type="checkbox" id="Cumulative Cases"
-                        formControlName="cumulativeCases" (change)="columnChange()">Cumulative Cases</label>
+                        formControlName="cumulativeCases" (change)="columnChange(0)">Cumulative Cases</label>
                 <label *ngIf="stats"><input type="checkbox" id="New Deaths" formControlName="newDeaths"
-                        (change)="columnChange()">New Deaths</label>
+                        (change)="columnChange(0)">New Deaths</label>
                 <label *ngIf="stats"><input type="checkbox" id="Cumulative Deaths"
-                        formControlName="cumulativeDeaths" (change)="columnChange()">Cumulative Deaths</label>
+                        formControlName="cumulativeDeaths" (change)="columnChange(0)">Cumulative Deaths</label>
                 <label *ngIf="stats"><input type="checkbox" id="New Hospitalizations"
-                        formControlName="newHospitalizations" (change)="columnChange()">New Hospitalizations</label>
+                        formControlName="newHospitalizations" (change)="columnChange(0)">New Hospitalizations</label>
                 <label *ngIf="stats"><input type="checkbox"
                         id="Cumulative Hospitalizations" formControlName="cumulativeHospitalizations"
-                        (change)="columnChange()">Cumulative
+                        (change)="columnChange(0)">Cumulative
                     Hospitalizations</label>
             </div>
 
         </div>
         <!--Time (text): Start date, End date  -->
-        <div class="column" id="date">
+        <div class="column" id="date" (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
             <button (click)="showDate()" id="dateButton">Date</button>
             <div class="dateDropDown">
-                <label *ngIf="date">Start date<input id="textInput" type="text" formControlName="startDate" (change)="columnChange()"
+                <label *ngIf="date">Start date<input id="textInput" type="text" formControlName="startDate" (change)="columnChange(1)"
                         placeholder="YYYY-MM-DD" [ngStyle] = "startErr && {'border': 'red', 'border-style':'groove'} || null" [dropSpecialCharacters]="false" mask="0000-00-00"></label>
-                <label *ngIf="date" class="end">End date<input id="textInput" type="text" formControlName="endDate" (change)="columnChange()"
+                <label *ngIf="date" class="end">End date<input id="textInput" type="text" formControlName="endDate" (change)="columnChange(1)"
                         placeholder="YYYY-MM-DD" [ngStyle] = "endErr && {'border': 'red', 'border-style':'groove'} || null" [dropSpecialCharacters]="false" mask="0000-00-00"></label>
                 <span *ngIf="hasError" class="error" >{{ form.value.error }}</span>
             </div>

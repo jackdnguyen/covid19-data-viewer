@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, NgModel } from '@angular/forms'
+import { FormGroup, FormControl, Validators, AbstractControl, NgModel, Form } from '@angular/forms'
 import { TableObject } from '../object_interface';
 import { TableService } from '../table_services';
-
 
 @Component({
   selector: 'app-table',
@@ -32,8 +31,13 @@ export class TableComponent implements OnInit {
   error = "[ ! ] start date too low";
   startErr = false;
   endErr = false;
-
-
+  prevForm = {
+    federal: true,
+    provincial: true,
+    regional: false,
+    startDate: '',
+    endDate: ''
+  }
 
   constructor(private ts:TableService) { }
 
@@ -54,15 +58,21 @@ export class TableComponent implements OnInit {
     })
     this.ts.dataChange.subscribe(e => this.dataChange());
     this.ts.hasError.subscribe(e => this.updateError())
+    this.updateForm(this.form.value)
   }
-  columnChange() {
-    console.log("Column Change");
+  columnChange(flag: Number) {
+    if(flag===1){
+      //JSON.stringify(this.prevForm) == JSON.stringify(this.form.value)
+      if(this.formCondition(this.form.value)){
+        this.ts.fetchColor(0)
+      } else {
+        this.ts.fetchColor(1)
+      }
+    }
     this.editTable(this.form.value);
     this.ts.updateForm(this.form.value);
   }
   editTable(table: any) {
-    console.log(table)
-    console.log(this.regional);
     this.federal = table.federal
     this.provincial = table.provincial
     this.regional = table.regional
@@ -74,7 +84,7 @@ export class TableComponent implements OnInit {
     this.cumulativeHospitalizations = table.cumulativeHospitalizations
   }
   dataChange() {
-    console.log("Table Talking")
+    this.updateForm(this.form.value)
     this.startErr = false
     this.endErr = false
     this.hasError = false
@@ -99,5 +109,23 @@ export class TableComponent implements OnInit {
     this.startErr = errorObj.start
     this.endErr = errorObj.end
     this.hasError = true
+  }
+  updateForm(form:any){
+    this.prevForm.federal = form.federal
+    this.prevForm.provincial = form.provincial
+    this.prevForm.regional = form.regional
+    this.prevForm.startDate = form.startDate
+    this.prevForm.endDate = form.endDate
+  }
+  formCondition(form:any){
+    if( this.prevForm.federal == form.federal &&
+        this.prevForm.provincial == form.provincial &&
+        this.prevForm.regional == form.regional &&
+        this.prevForm.startDate == form.startDate &&
+        this.prevForm.endDate == form.endDate){
+          return true
+        } else{
+          return false
+        }
   }
 }

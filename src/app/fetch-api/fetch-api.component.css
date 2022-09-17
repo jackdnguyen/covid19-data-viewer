@@ -3,11 +3,13 @@ button {
     height:2.5rem;
     border:none;
     border-radius: 6px;
-    background-color: #303031;
-
-    font-size: large;
-    color:#d3d3d3;
+    /* background-color: #303031; */
+    background-color: transparent;
+    font-size:larger;
+    font-weight: bold;
+    color:rgba(3, 3, 3);
 }
 button:hover{
-    color: #c93c3c;
+    color:rgba(78, 78, 78, 0.808);
+
 }

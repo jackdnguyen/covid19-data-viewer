@@ -38,20 +38,22 @@ export class TableService {
     })
     hasError = this.error.asObservable();
 
+    changeColor = new BehaviorSubject({
+        dataChange:false
+    });
+    change = false
+    changeFetchColor = this.changeColor.asObservable();
 
     ngOnInit(): void { }
 
     updateForm(form: TableObject) {
         this.form = form;
-        console.log("Updated Service Form");
     }
     getForm(){
         return this.form;
     }
     updateTableData(data:any){
         this.tableData = data;
-        console.log("table Service")
-        console.log(data);
         this.dataUpdate.next({dataChange:true});
     }
     getTableData(){
@@ -65,5 +67,16 @@ export class TableService {
     }
     getError(){
         return this.errorObj
+    }
+    fetchColor(data:Number){
+        if(data === 1){
+            this.change = true
+        } else if(data === 0){
+            this.change = false
+        }
+        this.changeColor.next({dataChange:true})
+    }
+    returnChange(){
+        return this.change
     }
 }

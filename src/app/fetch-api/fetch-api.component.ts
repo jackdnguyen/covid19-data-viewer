@@ -10,12 +10,15 @@ import { TableService } from '../table_services';
 })
 export class FetchApiComponent implements OnInit {
   constructor(private http: HttpClient, private ts: TableService) { }
+  fetchColor = false
 
   ngOnInit(): void {
     this.fetchAPI();
+    this.ts.changeFetchColor.subscribe(e => this.updateFetch())
   }
 
   fetchAPI() {
+    this.fetchColor = false
     let form = this.ts.getForm()
     let valid = this.dateValidator(form.startDate, form.endDate)
     let tableData: any = [];
@@ -124,14 +127,10 @@ export class FetchApiComponent implements OnInit {
         })
       }
     } else {
-      console.log("ERROR!!")
+      console.log("error")
     }
   }
   dateValidator(startString: string, endString: string) {
-
-    console.log(startString)
-    console.log(endString)
-
     let startArr = startString.split("-")
     let endArr = endString.split("-")
     let flag = false;
@@ -208,7 +207,6 @@ export class FetchApiComponent implements OnInit {
     let todayNum = parseInt(today)
 
     if (start > todayNum && end > todayNum) {
-      console.log("error: input > today")
       this.ts.errorCall("[!] error: input > today", true, true)
       flag = true
     } else if (start > todayNum && end <= todayNum) {
@@ -221,5 +219,12 @@ export class FetchApiComponent implements OnInit {
     if (flag) return false;
 
     return true
+  }
+  updateFetch(){
+    if(this.ts.change === true){
+      this.fetchColor = true
+    } else {
+      this.fetchColor = false
+    }
   }
 }

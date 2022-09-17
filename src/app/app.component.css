@@ -11,7 +11,9 @@ html, body {
 h2 {
     position:absolute;
     float:left;
-    color:  #E5E5E5;
+    /* color:  #E5E5E5;
+     */
+    color:rgba(3, 3, 3);
     top:0rem;
     left:4rem;
     font-weight:bolder;
@@ -21,7 +23,7 @@ h2 {
 #flag {
     position:absolute;
     top:1.5rem;
-    left:1.2rem;
+    left:1.5rem;
     pointer-events: all;
     z-index:10;
 }

@@ -85,7 +85,6 @@ export class ChartsComponent implements OnInit {
       singleTemp.push(newDeaths);
       singleTemp.push(newHospitalized);
     }
-    console.log(singleTemp)
     this.single = singleTemp
 
     if(form.provincial){
@@ -114,7 +113,6 @@ export class ChartsComponent implements OnInit {
           obj.series[2].value = data[i].hospitalized
           multiTemp.push(obj)
           if(multiTemp.length == 13){
-            console.log(multiTemp)
             break
           }
         }
