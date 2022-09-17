@@ -1,8 +1,9 @@
 # Covid19DataViewer
-Testing deployment with aws
-web: http://jackdnguyen-covid19-dataviewer.s3-website-us-west-1.amazonaws.com
+Hello, this is a COVID-19 Data viewer for Canada. The purpose of this project is to examine the timeline of the pandemic COVID-19. Visualized with charts and tables, the data is extracted from https://opencovid.ca/api/ and is formulated based off user time-input and filters.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+Deployed with AWS S3 at: http://jackdnguyen-covid19-dataviewer.s3-website-us-west-1.amazonaws.com
+
+This project was generated with Angular CLI version 14.2.0.
 
 ## Development server
 
